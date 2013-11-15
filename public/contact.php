@@ -1,6 +1,6 @@
 <?php
-require '../header.php';
-require_once '../lib/Swift-5.0.1/lib/swift_required.php';
+require_once '../application.php';
+require ROOT_PATH . '/header.php';
 
 if (isset($_POST['email'])) {
 $email = $_POST['email'];
@@ -16,10 +16,11 @@ $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
   ->setUsername('yhutbildning@aross.se')
   ->setPassword('2tpdsh7RzgXR');
 
-$mailer = Swift_SmtpMailer::newInstance($transport);
+$mailer = Swift_Mailer::newInstance($transport);
 
 $message = Swift_Message::newInstance('Nytt mail ifrån min portfolio')
   ->setFrom(array($email['email_address'] => $email['name']))
+  ->setReplyTo(array($email['email_address'] => $email['name']))
   ->setTo(array('yhutbildning@aross.se' => 'Alex Ross'))
   ->setBody(bodyMessage($email));
 
@@ -33,6 +34,17 @@ $result = $mailer->send($message);
 <?php var_dump($_POST); 
 
 ?>
+<?php if(isset($_POST['email'])): ?>
+  <?php if ($result >= 1): ?>
+    <div class="alert alert-success">
+      <p>Tack för ditt mail, jag återkommer så snart som möjligt.</p>
+    </div>
+  <?php else: ?>
+    <div class="alert alert-danger">
+      <p>Det gick tyvärr inte att skicka mailer, var god försök igen.</p>
+    </div>
+  <?php endif; ?>
+<?php endif; ?>
 
 <div class="row">
   <form action="" method="POST">
@@ -62,4 +74,4 @@ $result = $mailer->send($message);
     </div>
   </form>
 </div>
-<?php require '../footer.php' ?>
+<?php require ROOT_PATH . '/footer.php' ?>
