@@ -12,16 +12,16 @@ function bodyMessage($email) {
   return $txt;
 }
 
-$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-  ->setUsername('yhutbildning@aross.se')
-  ->setPassword('2tpdsh7RzgXR');
+$transport = Swift_SmtpTransport::newInstance(SMTP_ADDRESS, SMTP_PORT,SMTP_ENCRYPT_PROTOCOL)
+  ->setUsername(SMTP_USER)
+  ->setPassword(SMTP_PASS);
 
 $mailer = Swift_Mailer::newInstance($transport);
 
 $message = Swift_Message::newInstance('Nytt mail ifrån min portfolio')
   ->setFrom(array($email['email_address'] => $email['name']))
   ->setReplyTo(array($email['email_address'] => $email['name']))
-  ->setTo(array('yhutbildning@aross.se' => 'Alex Ross'))
+  ->setTo(array(ADMIN_EMAIL => ADMIN_NAME))
   ->setBody(bodyMessage($email));
 
 $result = $mailer->send($message);
