@@ -17,3 +17,9 @@ define('SMTP_PORT', 465);
 define('SMTP_ENCRYPT_PROTOCOL', 'ssl');
 define('SMTP_USER', 'yhutbildning@aross.se');
 define('SMTP_PASS', '2tpdsh7RzgXR');
+
+// Database configurations
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'myPortfolioSE');
+define('DB_USER', 'root');
+define('DB_PASS', '');

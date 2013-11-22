@@ -1,4 +1,5 @@
-<?php require '../header.php' ?>
+<?php require_once '../application.php'; ?>
+<?php require ROOT_PATH . '/header.php' ?>
 <div class="row">
   <div class="col-md-7">
     <h1>
@@ -33,4 +34,4 @@
     <img class="img-responsive" src="holder.js/350x650/auto" alt="250x650" >
   </div>
 </div>
-<?php require '../footer.php' ?>
+<?php require ROOT_PATH . '/footer.php' ?>
