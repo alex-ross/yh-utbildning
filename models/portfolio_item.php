@@ -24,6 +24,21 @@ class PortfolioItem extends BaseModel
     }
   }
 
+  // PortfolioItem::destroy($_GET['id']);
+  // OBS: ej testad
+  public static function destroyWhereId($id) {
+    $statement = self::$dbh->prepare("DELETE FROM ".self::TABLE_NAME." WHERE id = :id");
+    $statement->execute(array('id' => $id));
+  }
+
+  // $item->destroy();
+  // OBS: ej testad
+  public function destroy() {
+    self::destroyWhereId($this->id);
+  }
+
+
+
   private static $url = '/portfolio_items';
 
   /**
