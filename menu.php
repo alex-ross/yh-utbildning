@@ -15,6 +15,13 @@ $menu[] = array(
   'href' => '/contact.php',
   'text' => 'Kontakta mig'
 );
+
+if (Authorization::check()) {
+  $menu[] = array(
+    'href' => '/admin/logout.php',
+    'text' => 'Logga ut'
+  );
+}
 ?>
 
 <ul class="nav nav-pills pull-right">

@@ -1,9 +1,12 @@
 <?php
-
 require_once '../../../application.php';
+
+// Kollar om användaren är inloggad. Annars skickas man vidare till inlogningssidan
+Authorization::checkOrRedirect();
 require_once ROOT_PATH . '/header.php';
 
 $portfolioItems = PortfolioItem::all();
+var_dump($_GET);
 ?>
 <h1>Portfolio items</h1>
 

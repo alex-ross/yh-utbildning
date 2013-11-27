@@ -9,6 +9,7 @@ define('ROOT_PATH', dirname(__FILE__));
 
 // Admin
 define('ADMIN_EMAIL', 'yhutbildning@aross.se');
+define('ADMIN_PASS', 'password');
 define('ADMIN_NAME', 'Alexander Ross');
 
 // Smtp configuration

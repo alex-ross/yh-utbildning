@@ -1,6 +1,8 @@
 <?php
 
 require_once '../../../application.php';
+
+Authorization::checkOrRedirect();
 require_once ROOT_PATH . '/header.php';
 
 
