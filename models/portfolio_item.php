@@ -63,6 +63,19 @@ class PortfolioItem extends BaseModel
     return '/admin/portfolio/edit.php?id=' . $this->id;
   }
 
+  public function imageSrc() {
+    return "/img/uploaded/portfolio_item_" . $this->id . ".png";
+  }
+
+  public function attachUploadedImage($image) {
+    $validFileTypes = array('image/png', 'image/x-png');
+    if ($image['size'] >= 1 && in_array($image['type'], $validFileTypes)) {
+      return move_uploaded_file($image['tmp_name'], ROOT_PATH . '/public/img/uploaded/portfolio_item_' . $this->id . '.png');
+    } else {
+      return false;
+    }
+  }
+
   /**
    * Sparar nuvarande portfolio item i databasen. Denna methoden är inte kapabel
    * att skapa en ny rad i databasen. Det behöver vi skapa en annan metod för.

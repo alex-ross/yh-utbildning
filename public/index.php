@@ -18,7 +18,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <img class="img-responsive" src="holder.js/500x500/auto" alt="500x500" >
+      <img class="img-responsive" src="<?php echo $item->imageSrc(); ?>" alt="500x500" >
     </div>
   </div>
 
