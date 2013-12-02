@@ -23,6 +23,11 @@ if (Authorization::check()) {
   );
 
   $menu[] = array(
+    'href' => '/admin/category',
+    'text' => '[admin] Kategori'
+  );
+
+  $menu[] = array(
     'href' => '/admin/logout.php',
     'text' => 'Logga ut'
   );
