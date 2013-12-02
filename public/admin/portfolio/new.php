@@ -3,25 +3,24 @@
 require_once '../../../application.php';
 
 Authorization::checkOrRedirect();
-require_once ROOT_PATH . '/header.php';
-
-var_dump($_POST);
-var_dump($_FILES);
 
 if(isset($_POST['item'])) {
   $item = new PortfolioItem($_POST['item']);
-  $item->save();
+  $item->create();
 
   if (isset($_FILES['image'])) $item->attachUploadedImage($_FILES['image']);
+  header('Location: ' . $item->adminEditUrl());
+  exit;
 } else {
-  $item = PortfolioItem::find($_GET['id']);
+  $item = new PortfolioItem();
 }
+
+require_once ROOT_PATH . '/header.php';
 
 ?>
 
-<h1>Edit: <?php echo $item->title; ?></h1>
+<h1>New portfolio item</h1>
 <form action="" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="item[id]" value="<?php echo $item->id; ?>">
 
   <div class="form-group">
     <label for="title">Title</label>
@@ -34,15 +33,13 @@ if(isset($_POST['item'])) {
   </div>
 
   <div class="row">
-    <div class="form-group col-md-6">
+    <div class="form-group">
       <label for="image">Image</label>
       <input type="file" id="image" name="image" value="<?php echo $item->title; ?>" class="form-control">
     </div>
-
-    <div class="col-md-6"><img class="img-responsive" src="<?php echo $item->imageSrc(); ?>"></div>
   </div>
 
-  <input type="submit" name="submit" value="Spara" class="btn">
+  <input type="submit" name="submit" value="Skapa" class="btn">
 </form>
 <br>
 <?php require_once ROOT_PATH . '/footer.php'; ?>

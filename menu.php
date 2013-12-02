@@ -18,6 +18,11 @@ $menu[] = array(
 
 if (Authorization::check()) {
   $menu[] = array(
+    'href' => '/admin/portfolio',
+    'text' => '[admin] Portfolios'
+  );
+
+  $menu[] = array(
     'href' => '/admin/logout.php',
     'text' => 'Logga ut'
   );

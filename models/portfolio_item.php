@@ -95,4 +95,15 @@ class PortfolioItem extends BaseModel
                              ));
   }
 
+  public function create() {
+    $statement = self::$dbh->prepare("INSERT INTO " . self::TABLE_NAME . "
+      (title, content, categoryId) VALUES (:title, :content, :categoryId)");
+    $statement->execute(array('title' => $this->title,
+                              'content' => $this->content,
+                              'categoryId' => $this->categoryId));
+
+    // Hämtar senaste id och sätter det till objektet
+    $this->id = self::$dbh->lastInsertId();
+  }
+
 }

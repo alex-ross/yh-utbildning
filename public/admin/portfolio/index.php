@@ -10,6 +10,8 @@ var_dump($_GET);
 ?>
 <h1>Portfolio items</h1>
 
+<a href="/admin/portfolio/new.php">Ny portfolio item</a>
+
 <table class="table">
   <thead>
     <tr>
@@ -25,6 +27,8 @@ var_dump($_GET);
         <td><?php echo $item->title; ?></td>
         <td>
           <a href="<?php echo $item->adminEditUrl(); ?>">Edit</a>
+          <span> | </span>
+          <a href="/admin/portfolio/remove.php?id=<?php echo $item->id; ?>">Ta bort</a>
         </td>
       </tr>
     <?php endforeach; ?>
