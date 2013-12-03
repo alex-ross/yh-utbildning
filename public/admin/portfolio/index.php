@@ -17,6 +17,7 @@ var_dump($_GET);
     <tr>
       <th>Id</th>
       <th>Title</th>
+      <th>Kategori</th>
       <th>&nbsp;</th>
     </tr>
   </thead>
@@ -25,6 +26,9 @@ var_dump($_GET);
       <tr>
         <td><?php echo $item->id; ?></td>
         <td><?php echo $item->title; ?></td>
+        <td>
+          <?php if ($item->category()) echo $item->category()->name; ?>
+        </td>
         <td>
           <a href="<?php echo $item->adminEditUrl(); ?>">Edit</a>
           <span> | </span>

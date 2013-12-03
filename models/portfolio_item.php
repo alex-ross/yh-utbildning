@@ -106,4 +106,31 @@ class PortfolioItem extends BaseModel
     $this->id = self::$dbh->lastInsertId();
   }
 
+  // Skapar privat variable som kommer innehålla ketegorin
+  private $category;
+  public function category() {
+    // Hämtar kategorin om den inte redan är satt till variablen
+    if (!isset($this->category)) {
+      $this->category = Category::find($this->categoryId);
+    }
+
+    return $this->category;
+  }
+
+  /**
+   * Hämtar alla portfolio items inom specifi kategori
+   *
+   * @param int $id  ID på den kategori vi vill hämta i
+   */
+  public static function whereCategoryId($id) {
+    // Förbereder SQL strängen
+    $statement = self::$dbh->prepare("SELECT * FROM " . self::TABLE_NAME . "
+                                      WHERE categoryId=:categoryId");
+    // Kör SQL strängen
+    $statement->execute(array('categoryId' => $id));
+
+    // Hämta varje rad som en instans av PortfolioItem
+    return $statement->fetchAll(PDO::FETCH_CLASS, 'PortfolioItem');
+  }
+
 }
